@@ -1,5 +1,5 @@
-import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
+import {NgModule} from '@angular/core';
+import {RouterModule, Routes} from '@angular/router';
 import {HomeComponent} from "./components/home/home.component";
 import {CartComponent} from "./components/cart/cart.component";
 import {CheckOutComponent} from "./components/check-out/check-out.component";
@@ -8,39 +8,45 @@ import {MyOrdersComponent} from "./components/my-orders/my-orders.component";
 import {LoginComponent} from "./components/login/login.component";
 import {AdminProductsComponent} from "./components/admin/admin-products/admin-products.component";
 import {AdminOrdersComponent} from "./components/admin/admin-orders/admin-orders.component";
+import {AuthGuard} from "./service/auth-guard.service";
 
 const routes: Routes = [
   {
-    path:'',
+    path: '',
     component: HomeComponent
   },
   {
-    path:'yourCart',
+    path: 'yourCart',
     component: CartComponent
   },
   {
-    path:'check-out',
-    component:CheckOutComponent
+    path: 'login',
+    component: LoginComponent
   },
   {
-    path:'order-success',
-    component:OrderSuccessComponent
+    path: 'check-out',
+    component: CheckOutComponent,
+    canActivate: [AuthGuard]
   },
   {
-    path:'my/orders',
-    component:MyOrdersComponent
+    path: 'order-success',
+    component: OrderSuccessComponent,
+    canActivate: [AuthGuard]
   },
   {
-    path:'login',
-    component:LoginComponent
+    path: 'my/orders',
+    component: MyOrdersComponent,
+    canActivate: [AuthGuard]
   },
   {
-    path:'admin/products',
-    component:AdminProductsComponent
+    path: 'admin/products',
+    component: AdminProductsComponent,
+    canActivate: [AuthGuard]
   },
   {
-    path:'admin/orders',
-    component:AdminOrdersComponent
+    path: 'admin/orders',
+    component: AdminOrdersComponent,
+    canActivate: [AuthGuard]
   }
 ];
 
@@ -48,4 +54,5 @@ const routes: Routes = [
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {
+}

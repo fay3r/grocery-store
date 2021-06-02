@@ -16,6 +16,8 @@ import { MyOrdersComponent } from './components/my-orders/my-orders.component';
 import { AngularFirestoreModule} from "@angular/fire/firestore";
 import {AngularFireModule} from "@angular/fire";
 import {firebaseConfig} from "../environments/firebaseConfig";
+import {AuthService} from "./service/auth.service";
+import {AuthGuard} from "./service/auth-guard.service";
 
 
 
@@ -40,7 +42,7 @@ import {firebaseConfig} from "../environments/firebaseConfig";
     AngularFirestoreModule,
     AngularFireModule.initializeApp(firebaseConfig)
   ],
-  providers: [],
+  providers: [AuthService,AuthGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
