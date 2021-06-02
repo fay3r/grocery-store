@@ -13,6 +13,11 @@ import { CheckOutComponent } from './components/check-out/check-out.component';
 import { LoginComponent } from './components/login/login.component';
 import { OrderSuccessComponent } from './components/order-success/order-success.component';
 import { MyOrdersComponent } from './components/my-orders/my-orders.component';
+import { AngularFirestoreModule} from "@angular/fire/firestore";
+import {AngularFireModule} from "@angular/fire";
+import {firebaseConfig} from "../environments/firebaseConfig";
+
+
 
 
 @NgModule({
@@ -31,7 +36,9 @@ import { MyOrdersComponent } from './components/my-orders/my-orders.component';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    NgbModule
+    NgbModule,
+    AngularFirestoreModule,
+    AngularFireModule.initializeApp(firebaseConfig)
   ],
   providers: [],
   bootstrap: [AppComponent]

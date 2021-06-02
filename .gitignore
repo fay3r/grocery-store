@@ -46,3 +46,4 @@ Thumbs.db
 /firebase.json
 /.firebase/
 /.firebaserc
+/src/environments/firebaseConfig.ts
