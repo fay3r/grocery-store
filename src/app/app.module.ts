@@ -21,6 +21,7 @@ import {AuthGuard} from "./service/auth-guard.service";
 import {UserService} from "./service/user.service";
 import {AdminAuthGuard} from "./service/admin-auth-guard.service";
 import { ProductFormComponent } from './components/admin/product-form/product-form.component';
+import {CategoriesService} from "./service/categories.service";
 
 
 
@@ -46,7 +47,11 @@ import { ProductFormComponent } from './components/admin/product-form/product-fo
     AngularFirestoreModule,
     AngularFireModule.initializeApp(firebaseConfig)
   ],
-  providers: [AuthService,AuthGuard,UserService, AdminAuthGuard],
+  providers: [AuthService,
+    AuthGuard,
+    UserService,
+    AdminAuthGuard,
+    CategoriesService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
