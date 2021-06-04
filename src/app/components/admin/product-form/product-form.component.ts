@@ -1,7 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {CategoriesService} from "../../../service/categories.service";
 import {ProductService} from "../../../service/product.service";
-import {Router} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
+import {take} from "rxjs/operators";
+import {NonNullAssert} from "@angular/compiler";
 
 @Component({
   selector: 'app-product-form',
@@ -9,19 +11,41 @@ import {Router} from "@angular/router";
   styleUrls: ['./product-form.component.css']
 })
 export class ProductFormComponent implements OnInit {
-  categories$:any;
+  categories$: any;
+  product: any = {};
+  id: string | null;
 
   constructor(private categoryService: CategoriesService,
-              private productService:ProductService,
-              private router:Router) {
+              private productService: ProductService,
+              private router: Router,
+              private route: ActivatedRoute) {
     this.categories$ = categoryService.getCategories();
+
+    this.id = this.route.snapshot.paramMap.get('id');
+    if (this.id) {
+      this.productService.get(this.id).valueChanges().pipe(take(1)).subscribe(p => this.product = p);
+    }
   }
 
   ngOnInit(): void {
   }
 
   save(product: any) {
-    this.productService.create(product);
+    if (this.id) {
+      this.productService.update(this.id, product);
+    } else {
+      this.productService.create(product);
+    }
     this.router.navigate(['/admin/products']);
+  }
+
+  delete() {
+    if (!confirm('Sure?')) {
+      return;
+    }
+    // @ts-ignore
+    this.productService.delete(this.id);
+    this.router.navigate(['/admin/products']);
+
   }
 }
