@@ -25,6 +25,10 @@ import {CategoriesService} from "./service/categories.service";
 import {FormsModule} from "@angular/forms";
 import {ProductService} from "./service/product.service";
 import {CustomFormsModule} from "ng2-validation";
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {MatPaginatorModule} from "@angular/material/paginator";
+import {MatTableModule} from "@angular/material/table";
+import {MatSlider, MatSliderModule} from "@angular/material/slider";
 
 @NgModule({
   declarations: [
@@ -48,6 +52,11 @@ import {CustomFormsModule} from "ng2-validation";
     AngularFireModule.initializeApp(firebaseConfig),
     FormsModule,
     CustomFormsModule,
+    BrowserAnimationsModule,
+    MatPaginatorModule,
+    MatTableModule,
+    MatSliderModule,
+
   ],
   providers: [AuthService,
     AuthGuard,
