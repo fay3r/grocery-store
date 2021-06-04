@@ -18,6 +18,9 @@ import {AngularFireModule} from "@angular/fire";
 import {firebaseConfig} from "../environments/firebaseConfig";
 import {AuthService} from "./service/auth.service";
 import {AuthGuard} from "./service/auth-guard.service";
+import {UserService} from "./service/user.service";
+import {AdminAuthGuard} from "./service/admin-auth-guard.service";
+import { ProductFormComponent } from './components/admin/product-form/product-form.component';
 
 
 
@@ -33,7 +36,8 @@ import {AuthGuard} from "./service/auth-guard.service";
     CheckOutComponent,
     LoginComponent,
     OrderSuccessComponent,
-    MyOrdersComponent
+    MyOrdersComponent,
+    ProductFormComponent
   ],
   imports: [
     BrowserModule,
@@ -42,7 +46,7 @@ import {AuthGuard} from "./service/auth-guard.service";
     AngularFirestoreModule,
     AngularFireModule.initializeApp(firebaseConfig)
   ],
-  providers: [AuthService,AuthGuard],
+  providers: [AuthService,AuthGuard,UserService, AdminAuthGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
