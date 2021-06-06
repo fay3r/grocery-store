@@ -1,4 +1,4 @@
-import {AfterViewInit, Component, OnDestroy, OnInit, ViewChild} from '@angular/core';
+import { Component, OnDestroy, OnInit, ViewChild} from '@angular/core';
 import {ProductService} from "../../../service/product.service";
 import {Subscription} from "rxjs";
 import {MatPaginator} from "@angular/material/paginator";
@@ -16,7 +16,7 @@ export class AdminProductsComponent implements OnInit, OnDestroy {
   products: Product[] = [];
   subscription: Subscription;
   filteredProduct: MatTableDataSource<Product>;
-  columnsToDisplay = ['title', 'price'];
+  columnsToDisplay = ['title', 'price', 'edit'];
 
   // @ts-ignore
   @ViewChild(MatPaginator) paginator: MatPaginator ;
@@ -28,7 +28,6 @@ export class AdminProductsComponent implements OnInit, OnDestroy {
     this.subscription = this.productService.getAll().subscribe(products => {
       this.products = createProductArray(products);
       this.filteredProduct = new MatTableDataSource<Product>(this.products);
-      console.log('const')
       this.filteredProduct.filterPredicate =
         (data: Product, filter: string) => data.title.toLowerCase().indexOf(filter) != -1;
       this.filteredProduct.paginator = this.paginator;
@@ -45,7 +44,6 @@ export class AdminProductsComponent implements OnInit, OnDestroy {
     query = query.toLowerCase();
     this.filteredProduct.filter = query;
   }
-
 
   ngOnDestroy(): void {
     this.subscription.unsubscribe();
