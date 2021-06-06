@@ -1,4 +1,4 @@
-import {Component, OnDestroy, OnInit, ViewChild} from '@angular/core';
+import {AfterViewInit, Component, OnDestroy, OnInit, ViewChild} from '@angular/core';
 import {ProductService} from "../../../service/product.service";
 import {Subscription} from "rxjs";
 import {MatPaginator} from "@angular/material/paginator";
@@ -10,9 +10,7 @@ import {Product} from "../../../models/product";
   selector: 'admin-products',
   templateUrl: './admin-products.component.html',
   styleUrls: ['./admin-products.component.css'],
-
 })
-
 
 export class AdminProductsComponent implements OnInit, OnDestroy {
   products: Product[] = [];
@@ -20,32 +18,34 @@ export class AdminProductsComponent implements OnInit, OnDestroy {
   filteredProduct: MatTableDataSource<Product>;
   columnsToDisplay = ['title', 'price'];
 
-  @ViewChild(MatPaginator) paginator: MatPaginator | undefined;
-  @ViewChild(MatSort) sort: MatSort | undefined;
-
-  ngAfterViewInit() {
-    // @ts-ignore
-    this.filteredProduct.paginator = this.paginator;
-    // @ts-ignore
-    this.filteredProduct.sort = this.sort;
-  }
+  // @ts-ignore
+  @ViewChild(MatPaginator) paginator: MatPaginator ;
+  // @ts-ignore
+  @ViewChild(MatSort) sort: MatSort ;
 
   constructor(private productService: ProductService) {
     this.filteredProduct = new MatTableDataSource();
     this.subscription = this.productService.getAll().subscribe(products => {
       this.products = createProductArray(products);
       this.filteredProduct = new MatTableDataSource<Product>(this.products);
-      console.log('fil',this.filteredProduct.data);
+      console.log('const')
+      this.filteredProduct.filterPredicate =
+        (data: Product, filter: string) => data.title.toLowerCase().indexOf(filter) != -1;
+      this.filteredProduct.paginator = this.paginator;
+      this.filteredProduct.sort = this.sort;
     });
+
   }
 
   ngOnInit(): void {
   }
 
-  filter(event: Event) {
-    const filterValue = (event.target as HTMLInputElement).value;
-    this.filteredProduct.filter = filterValue.trim().toLowerCase()
+  filter(query:string) {
+    query = query.trim(); // Remove whitespace
+    query = query.toLowerCase();
+    this.filteredProduct.filter = query;
   }
+
 
   ngOnDestroy(): void {
     this.subscription.unsubscribe();
