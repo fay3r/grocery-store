@@ -28,7 +28,10 @@ import {CustomFormsModule} from "ng2-validation";
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MatPaginatorModule} from "@angular/material/paginator";
 import {MatTableModule} from "@angular/material/table";
-import {MatSlider, MatSliderModule} from "@angular/material/slider";
+import { MatSliderModule} from "@angular/material/slider";
+import {MatSortModule} from "@angular/material/sort";
+import {MatFormFieldModule} from "@angular/material/form-field";
+import {MatInputModule} from "@angular/material/input";
 
 @NgModule({
   declarations: [
@@ -56,7 +59,9 @@ import {MatSlider, MatSliderModule} from "@angular/material/slider";
     MatPaginatorModule,
     MatTableModule,
     MatSliderModule,
-
+    MatSortModule,
+    MatFormFieldModule,
+    MatInputModule
   ],
   providers: [AuthService,
     AuthGuard,
