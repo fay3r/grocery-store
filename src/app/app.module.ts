@@ -33,6 +33,7 @@ import {MatSortModule} from "@angular/material/sort";
 import {MatFormFieldModule} from "@angular/material/form-field";
 import {MatInputModule} from "@angular/material/input";
 import { ProductFilterComponent } from './components/product-filter/product-filter.component';
+import { ProductCardComponent } from './components/product-card/product-card.component';
 
 @NgModule({
   declarations: [
@@ -47,7 +48,8 @@ import { ProductFilterComponent } from './components/product-filter/product-filt
     OrderSuccessComponent,
     MyOrdersComponent,
     ProductFormComponent,
-    ProductFilterComponent
+    ProductFilterComponent,
+    ProductCardComponent
   ],
   imports: [
     BrowserModule,
