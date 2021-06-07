@@ -8,6 +8,7 @@ import {Router} from "@angular/router";
   styleUrls: ['./navbar.component.css']
 })
 export class NavbarComponent {
+  isNavBarCollapsed = true;
 
 
   constructor(public auth:AuthService, private route:Router) {

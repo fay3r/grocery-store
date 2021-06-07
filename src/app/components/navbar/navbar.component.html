@@ -1,13 +1,13 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
   <div class="container-fluid">
     <a class="navbar-brand" [routerLink]="''">
-      <img src="https://pics.freeicons.io/uploads/icons/png/19588470741578289021-512.png" alt="" width="30" height="24">  Grocery
+      <img src="https://pics.freeicons.io/uploads/icons/png/19588470741578289021-512.png" alt="" width="30" height="24">
+      Grocery
     </a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown"
-            aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+    <button class="navbar-toggler" type="button" (click)="isNavBarCollapsed = !isNavBarCollapsed">
       <span class="navbar-toggler-icon"></span>
     </button>
-    <div class="collapse navbar-collapse" id="navbarNavDropdown">
+    <div class="navbar-collapse" [ngbCollapse]="isNavBarCollapsed">
       <ul class="navbar-nav">
         <li class="nav-item">
           <a class="nav-link active" aria-current="page" [routerLink]="'/yourCart'">Shopping cart</a>
@@ -37,3 +37,4 @@
     </div>
   </div>
 </nav>
+
