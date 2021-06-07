@@ -1,16 +1,31 @@
 <div class="row">
-  <ng-container *ngFor="let product of products; let i=index">
-    <div class="col">
-      <div *ngIf="product.title" class="card" style="width: 20rem;">
-        <img [src]="product.imageUrl" class="card-img-top" *ngIf="product.imageUrl">
-        <div class="card-body">
-          <h5 class="card-title">{{product.title}}</h5>
-          <p class="card-text">{{product.price | currency:'USD':true}}</p>
-          <a href="" class="btn btn-primary">Add to Cart</a>
-        </div>
-      </div>
+  <div class="col-2">
+    <div>
+      <a class="list-group-item list-group-item-action"
+          *ngFor="let c of categories$ |async"
+          [routerLink]="'/'"
+          [queryParams]="{category:c.key}"
+          [class.active]="category === c.key"><p style="font-size:large"> {{c.payload.val().name}}</p></a>
     </div>
-    <div *ngIf="(i+1) % 2 ===0" class="w-50"></div>
-  </ng-container>
+  </div>
+  <div class="col-1"></div>
+  <div class="col">
+    <div class="row">
+      <ng-container *ngFor="let product of filteredProduct; let i=index">
+        <div class="col">
+          <div *ngIf="product.title" class="card" style="width: 25rem;">
+            <img [src]="product.imageUrl" class="card-img-top " *ngIf="product.imageUrl">
+            <div class="card-body">
+              <h1 class="card-title">{{product.title}}</h1>
+              <p class="card-text">{{product.price | currency:'USD':true}}</p>
+              <a href="" class="btn btn-primary">Add to Cart</a>
+            </div>
+          </div>
+        </div>
+        <div *ngIf="(i+1) % 2 ===0" class="w-25"></div>
+      </ng-container>
+    </div>
+  </div>
 </div>
+
 
