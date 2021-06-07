@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
+<nav class="navbar navbar-expand-lg navbar-light bg-light sticky-top">
   <div class="container-fluid">
     <a class="navbar-brand" [routerLink]="''">
       <img src="https://pics.freeicons.io/uploads/icons/png/19588470741578289021-512.png" alt="" width="30" height="24">
@@ -21,15 +21,17 @@
 
         <li ngbDropdown
             class="nav-item dropdown"
-            *ngIf="auth.user$ | async as user; else anonymousUser">
+            *ngIf="appUser else anonymousUser">
           <a ngbDropdownToggle class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" role="button"
              data-bs-toggle="dropdown" aria-expanded="false">
-            {{user.displayName}}
+            {{appUser.name}}
           </a>
           <ul ngbDropdownMenu class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
             <li><a class="dropdown-item" routerLink="/my/orders">My Orders</a></li>
-            <li><a class="dropdown-item" routerLink="/admin/orders">Manage Orders</a></li>
-            <li><a class="dropdown-item" routerLink="/admin/products">Manage Products</a></li>
+            <ng-container *ngIf="appUser.isAdmin">
+              <li><a class="dropdown-item" routerLink="/admin/orders">Manage Orders</a></li>
+              <li><a class="dropdown-item" routerLink="/admin/products">Manage Products</a></li>
+            </ng-container>
             <li><a class="dropdown-item" (click)="logout()">Log Out</a></li>
           </ul>
         </li>
