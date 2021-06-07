@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import {AuthService} from "../../service/auth.service";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'login',
@@ -8,9 +9,10 @@ import {AuthService} from "../../service/auth.service";
 })
 export class LoginComponent {
 
-  constructor(private auth:AuthService) { }
+  constructor(private auth:AuthService,private route: Router) { }
 
   login() {
-    this.auth.login();
+    this.auth.login().then(value =>this.route.navigate(['/']));
+
   }
 }
