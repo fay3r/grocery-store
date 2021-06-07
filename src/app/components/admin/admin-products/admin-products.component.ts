@@ -4,7 +4,7 @@ import {Subscription} from "rxjs";
 import {MatPaginator} from "@angular/material/paginator";
 import {MatSort} from "@angular/material/sort";
 import {MatTableDataSource} from "@angular/material/table";
-import {Product} from "../../../models/product";
+import {createProductArray, Product} from "../../../models/product";
 
 @Component({
   selector: 'admin-products',
@@ -16,7 +16,7 @@ export class AdminProductsComponent implements OnInit, OnDestroy {
   products: Product[] = [];
   subscription: Subscription;
   filteredProduct: MatTableDataSource<Product>;
-  columnsToDisplay = ['title', 'price', 'edit'];
+  columnsToDisplay = ['smallImg','title', 'price', 'edit'];
 
   // @ts-ignore
   @ViewChild(MatPaginator) paginator: MatPaginator ;
@@ -50,17 +50,4 @@ export class AdminProductsComponent implements OnInit, OnDestroy {
   }
 }
 
-function createProductArray(array: any[]): Product[] {
-  let products: Product[] = [];
-  array.map(value => {
-    products.push({
-        category: value.payload.val().category,
-        imageUrl: value.payload.val().imageUrl,
-        price: value.payload.val().price,
-        title: value.payload.val().title,
-        key: value.key
-      }
-    );
-  })
-  return products;
-}
+

@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import {ProductService} from "../../service/product.service";
+import {createProductArray, Product} from "../../models/product";
+import {Subscription} from "rxjs";
+import {MatTableDataSource} from "@angular/material/table";
 
 @Component({
   selector: 'app-home',
@@ -7,14 +11,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomeComponent implements OnInit {
 
-  constructor() { }
+  products: Product[] = [];
+  subscription: Subscription;
 
-  ngOnInit(): void {
-//    this.filterByCategory('root')
+  constructor( private productService:ProductService) {
+    this.subscription = this.productService.getAll().subscribe(products => {
+      this.products = createProductArray(products);
+    });
   }
 
-  // filterByCategory(categoryId: string){
-  //   this.filteredList = this.cats.filter(cat => cat.parent_id == categoryId)
-  // }
+  ngOnInit(): void {}
 
 }

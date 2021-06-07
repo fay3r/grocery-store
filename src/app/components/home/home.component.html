@@ -1,2 +1,16 @@
-<p>home works!</p>
+<div class="row" style="justify-content: center; align-items: center; align-content: center">
+  <ng-container *ngFor="let product of products; let i=index">
+    <div class="col">
+      <div *ngIf="product.title" class="card" style="width: 20rem;">
+        <img [src]="product.imageUrl" class="card-img-top" *ngIf="product.imageUrl">
+        <div class="card-body">
+          <h5 class="card-title">{{product.title}}</h5>
+          <p class="card-text">{{product.price | currency:'USD':true}}</p>
+          <a href="" class="btn btn-primary">Add to Cart</a>
+        </div>
+      </div>
+    </div>
+    <div *ngIf="(i+1) % 2 ===0" class="w-50"></div>
+  </ng-container>
+</div>
 

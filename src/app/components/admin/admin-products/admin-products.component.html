@@ -9,6 +9,12 @@
 
 <div class="mat-elevation-z8">
   <table mat-table [dataSource]="filteredProduct" matSort class="mat-elevation-z8">
+    <ng-container matColumnDef="smallImg">
+      <th mat-header-cell *matHeaderCellDef > Preview</th>
+      <td mat-cell *matCellDef="let product">
+        <img src="{{product.imageUrl}}" alt="img" style="width: 30px;height: 30px; border-radius: 100%" >
+      </td>
+    </ng-container>
     <ng-container matColumnDef="title">
       <th mat-header-cell *matHeaderCellDef mat-sort-header> Title</th>
       <td mat-cell *matCellDef="let product"> {{product.title}} </td>
