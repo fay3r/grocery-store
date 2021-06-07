@@ -32,6 +32,7 @@ import { MatSliderModule} from "@angular/material/slider";
 import {MatSortModule} from "@angular/material/sort";
 import {MatFormFieldModule} from "@angular/material/form-field";
 import {MatInputModule} from "@angular/material/input";
+import { ProductFilterComponent } from './components/product-filter/product-filter.component';
 
 @NgModule({
   declarations: [
@@ -45,7 +46,8 @@ import {MatInputModule} from "@angular/material/input";
     LoginComponent,
     OrderSuccessComponent,
     MyOrdersComponent,
-    ProductFormComponent
+    ProductFormComponent,
+    ProductFilterComponent
   ],
   imports: [
     BrowserModule,

@@ -1,0 +1,10 @@
+<div>
+  <a class="list-group-item-action list-group-item"
+     [class.active]="!category"
+     routerLink="/"><p style="font-size:large">All Categories</p></a>
+  <a class="list-group-item list-group-item-action"
+     *ngFor="let c of categories$ |async"
+     [routerLink]="'/'"
+     [queryParams]="{category:c.key}"
+     [class.active]="category === c.key"><p style="font-size:large"> {{c.payload.val().name}}</p></a>
+</div>
