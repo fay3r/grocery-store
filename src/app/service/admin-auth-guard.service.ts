@@ -1,9 +1,8 @@
 import {Injectable} from '@angular/core';
 import {CanActivate} from "@angular/router";
 import {AuthService} from "./auth.service";
-import {map, mapTo, switchMap} from "rxjs/operators";
+import {map} from "rxjs/operators";
 import {UserService} from "./user.service";
-import firebase from "firebase/app";
 import {Observable} from "rxjs";
 
 @Injectable({

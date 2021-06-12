@@ -16,7 +16,6 @@ export class UserService {
       name: user.displayName,
       email: user.email
     });
-    console.log('saving',user.uid,user.email);
   }
 
   get(uid:string): Observable<AppUser>{

@@ -34,6 +34,7 @@ import {MatFormFieldModule} from "@angular/material/form-field";
 import {MatInputModule} from "@angular/material/input";
 import { ProductFilterComponent } from './components/product-filter/product-filter.component';
 import { ProductCardComponent } from './components/product-card/product-card.component';
+import {ShoppingCartService} from "./service/shopping-cart.service";
 
 @NgModule({
   declarations: [
@@ -72,7 +73,8 @@ import { ProductCardComponent } from './components/product-card/product-card.com
     UserService,
     AdminAuthGuard,
     CategoriesService,
-    ProductService],
+    ProductService,
+    ShoppingCartService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

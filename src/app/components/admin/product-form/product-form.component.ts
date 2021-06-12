@@ -3,7 +3,6 @@ import {CategoriesService} from "../../../service/categories.service";
 import {ProductService} from "../../../service/product.service";
 import {ActivatedRoute, Router} from "@angular/router";
 import {take} from "rxjs/operators";
-import {NonNullAssert} from "@angular/compiler";
 
 @Component({
   selector: 'app-product-form',
