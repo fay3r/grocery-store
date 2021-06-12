@@ -1,8 +1,7 @@
 import {Injectable} from '@angular/core';
 import {AngularFireDatabase} from "@angular/fire/database";
 import {Product} from "../models/product";
-import firebase from "firebase";
-import {take} from "rxjs/operators";
+import {map, take} from "rxjs/operators";
 
 
 @Injectable({
@@ -41,7 +40,15 @@ export class ShoppingCartService {
     return this.db.object('/shopping-carts/' + cartId + '/items/' + productId);
   }
 
-  async addToCart(product:Product | undefined){
+  async addToCart(product:Product ){
+    this.updateItem(product as Product,-1)
+  }
+
+  async removeFromCart(product: Product) {
+    this.updateItem(product as Product,1)
+  }
+
+  private async updateItem(product:Product,change:number){
     let cartId = await this.getOrCreateCartId();
     // @ts-ignore
     let itemRef = this.getItem(cartId,product.key)
@@ -50,9 +57,9 @@ export class ShoppingCartService {
     item$.pipe(take(1)).subscribe(item => {
       if(item.payload.exists()){
         // @ts-ignore
-        itemRef.update({quantity: item.payload.val().quantity+1})
+        itemRef.update({quantity: item.payload.val().quantity-change})
       } else {
-        itemRef.set({product:product, quantity:1 });
+        itemRef.set({product:product,quantity:1})
       }
     })
   }

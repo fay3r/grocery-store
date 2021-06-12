@@ -5,3 +5,8 @@
 .dropdown-item{
   cursor: pointer;
 }
+
+.badge-color{
+  background-color:cadetblue;
+  font-size: 0.9em;
+}

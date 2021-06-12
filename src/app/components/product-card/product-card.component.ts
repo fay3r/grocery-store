@@ -23,8 +23,8 @@ export class ProductCardComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  addToCart(product: Product | undefined) {
-    this.shoppingCartService.addToCart(product);
+  addToCart() {
+    this.shoppingCartService.addToCart(this.product as Product);
 
   }
 
@@ -34,8 +34,13 @@ export class ProductCardComponent implements OnInit {
       return 0;
     }
     // @ts-ignore
-    let item = this.shoppingCart[this.product.key]
+    let item = this.shoppingCart[this.product.key ]
     return item ? item.quantity : 0;
+
+  }
+
+  removeFromCart() {
+    this.shoppingCartService.removeFromCart(this.product as Product);
 
   }
 }
