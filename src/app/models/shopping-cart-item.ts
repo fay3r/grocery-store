@@ -1,5 +1,4 @@
 import {Product} from "./product";
-import {map} from "rxjs/operators";
 
 export interface ShoppingCartItem{
   product: Product;
@@ -9,7 +8,7 @@ export interface ShoppingCartItem{
 export function createShoppingItems(array:any): ShoppingCartItem[] {
   let items:ShoppingCartItem[] = [];
   // @ts-ignore
-  array.pipe(value => {
+  array.pipe(map(value => {
     items.push(  {
       product:{ key: value.product.key,
         title: value.product.title,
@@ -19,7 +18,7 @@ export function createShoppingItems(array:any): ShoppingCartItem[] {
       },
       quantity: value.quantity
     })
-  })
+  }))
 
 
   return items;

@@ -36,8 +36,7 @@ export class HomeComponent implements OnInit, OnDestroy {
 
   async ngOnInit() {
     this.subscription = (await this.shoppingCartService.getCart()).subscribe(cart => {
-      // @ts-ignore
-      this.cart = cart.payload.val().items
+      this.cart = cart.items
     });
   }
 

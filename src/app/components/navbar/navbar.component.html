@@ -12,7 +12,7 @@
         <li class="nav-item">
           <a class="nav-link active" aria-current="page" [routerLink]="'/yourCart'">
             Shopping cart
-            <span class="badge rounded-pill badge-color">{{shoppingCartItemCount}}</span>
+            <span class="badge rounded-pill badge-color" *ngIf="cart$ | async as cart">{{ cart.totalItemsCount }}</span>
           </a>
         </li>
 
