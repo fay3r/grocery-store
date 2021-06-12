@@ -6,5 +6,6 @@
   </div>
   <div class="card-footer d-grid gap-2">
     <button (click)="addToCart(product)" *ngIf="showActions"  class="btn btn-primary ">Add to Cart</button>
+    <div>{{getQuantity()}}</div>
   </div>
 </div>
