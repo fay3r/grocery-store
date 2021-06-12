@@ -3,8 +3,7 @@ import {AuthService} from "../../service/auth.service";
 import {Router} from "@angular/router";
 import {AppUser} from "../../models/app-user";
 import {ShoppingCartService} from "../../service/shopping-cart.service";
-import {createShoppingItems} from "../../models/shopping-cart-item";
-import {switchMap} from "rxjs/operators";
+
 
 @Component({
   selector: 'navbar',
